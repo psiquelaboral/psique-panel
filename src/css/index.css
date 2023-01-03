@@ -1,0 +1,126 @@
+@import url("https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Roboto:wght@100;400;700&display=swap");
+
+/* :root {
+  --primary-backgound-color: rgb(44, 46, 52);
+  --hover-backgound-color: rgba(54, 59, 65);
+  --primary-text-color: #2c70c9;
+  --normal-text-color: #fffdfd;
+  --alternative-text-color: #a8a8a8;
+} */
+
+:root {
+  --primary-backgound-color: rgb(44, 112, 201);
+  --medium-backgound-color: rgb(19, 114, 238);
+  --hover-backgound-color: rgb(37, 84, 145);
+  --primary-text-color: rgb(222, 203, 183);
+  --normal-text-color: #fffdfd;
+  --alternative-text-color: rgb(222, 203, 183);
+  --gradient-background: linear-gradient(
+    to right,
+    var(--hover-backgound-color),
+    var(--primary-backgound-color),
+    var(--medium-backgound-color),
+    #41b583
+  );
+}
+
+html,
+body,
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+abbr,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+samp,
+small,
+strong,
+sub,
+sup,
+var,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-family: roboto;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}

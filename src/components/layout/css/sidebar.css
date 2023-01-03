@@ -1,0 +1,66 @@
+.sidebar-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 190px;
+  height: 100vh;
+  background-color: var(--primary-backgound-color);
+  color: var(--normal-text-color);
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--hover-backgound-color);
+  max-height: 45px;
+  min-height: 45px;
+  padding: 10px;
+  padding: 10px;
+  font-family: "Kaushan Script", cursive;
+  font-size: 32px;
+}
+
+.menu-container {
+  margin-top: 0;
+  background-color: transparent;
+  padding: 10px;
+  min-height: 150px;
+}
+
+.menuitem-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: transparent;
+  height: 35px;
+  font-size: 14px;
+  border-radius: 5px;
+  margin-bottom: 3px;
+  padding-left: 10px;
+  cursor: pointer;
+}
+
+.menuitem-container:hover {
+  background-color: var(--hover-backgound-color);
+}
+
+.sidebar-divider-text {
+  margin-left: 10px;
+  font-size: 14px;
+  margin-top: 25px;
+  margin-bottom: 5px;
+  color: var(--primary-text-color);
+  font-weight: bold;
+}
+
+.sidebar-image {
+  width: 130px;
+  margin-bottom: 25px;
+}
+
+.sidebar-sections-container {
+  padding: 0;
+  width: 100%;
+}
