@@ -14,6 +14,8 @@
   --hover-backgound-color: rgb(37, 84, 145);
   --primary-text-color: rgb(222, 203, 183);
   --normal-text-color: #fffdfd;
+  --dark-background-text-color: rgb(49, 47, 47);
+  --dark-background-text-color-secondary: rgb(86, 86, 86);
   --alternative-text-color: rgb(222, 203, 183);
   --gradient-background: linear-gradient(
     to right,
@@ -21,6 +23,12 @@
     var(--primary-backgound-color),
     var(--medium-backgound-color),
     #41b583
+  );
+  --gradient-background-login-info: linear-gradient(
+    38deg,
+    rgba(8, 8, 101, 1) 0%,
+    rgba(9, 9, 121, 1) 35%,
+    rgba(29, 53, 196, 1) 100%
   );
 }
 

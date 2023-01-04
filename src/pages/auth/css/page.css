@@ -1,0 +1,30 @@
+.auth-container {
+  display: flex;
+  height: 100vh;
+  background-color: var(--normal-text-color);
+}
+
+.section-a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  background-color: #f9f9f9;
+}
+
+.section-b {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  background: var(--gradient-background-login-info);
+}
+
+@media (max-width: 940px) {
+  .section-a {
+    width: 100%;
+  }
+  .section-b {
+    display: none;
+  }
+}

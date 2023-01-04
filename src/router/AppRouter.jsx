@@ -1,18 +1,22 @@
 import React from "react";
-import Layout from "../components/layout";
 import Home from "../pages/Home";
 import Employes from "../pages/Employes";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import RouteLayout from "../components/Routes/RouteLayout";
+import AuthPage from "../pages/auth";
 
 const AppRouter = () => {
   return (
     <BrowserRouter>
-      <Layout>
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route exact path="/employe" element={<Employes />} />
-        </Routes>
-      </Layout>
+      <Routes>
+        <Route exact path="/" element={<RouteLayout element={Home} />} />
+        <Route
+          exact
+          path="/employe"
+          element={<RouteLayout element={Employes} />}
+        />
+        <Route exact path="/login" element={<AuthPage />} />
+      </Routes>
     </BrowserRouter>
   );
 };
