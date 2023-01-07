@@ -1,7 +1,6 @@
 .login-container {
   display: flex;
   flex-direction: column;
-  /* background-color: grey; */
   padding: 10px;
   width: 450px;
 }
@@ -24,43 +23,6 @@
 
 .login-form-container {
   display: flex;
-}
-
-.forgot-password-container {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  margin-top: 25px;
-  margin-bottom: 25px;
-  padding-bottom: 25px;
-  border-bottom: solid 1px #e9e9e9;
-}
-
-.forgot-password-container span {
-  font-size: 14px;
-  font-weight: bold;
-  color: rgba(29, 53, 196, 1);
-  cursor: pointer;
-}
-
-.login-actions-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 25px;
-}
-
-.rememberme-checkbox {
-  display: flex;
-  justify-content: center;
-  font-size: 14px;
-  align-items: center;
-  text-align: end;
-  color: var(--dark-background-text-color-secondary);
-}
-
-.rememberme-checkbox input {
-  margin-right: 10px;
 }
 
 .login-footer-container {

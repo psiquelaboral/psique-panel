@@ -1,34 +1,8 @@
 import React from "react";
-
-import Button from "../../components/button/Button";
-import Form from "../../components/form/form/Form";
-import TextInput from "../../components/form/input/textinput/TextInput";
+import LoginForm from "../../components/forms/loginForm/LoginForm";
 import "./css/login.css";
 
 const Login = ({ changeView }) => {
-  const FormFooter = () => {
-    return (
-      <>
-        <div className="forgot-password-container">
-          <span
-            onClick={() => {
-              changeView("resetpassword");
-            }}
-          >
-            ¿Olvidaste tu contraseña?
-          </span>
-        </div>
-        <div className="login-actions-container">
-          <div className="rememberme-checkbox">
-            <input id="remember" type="checkbox" />
-            <label htmlFor="remember">Recuerdame</label>
-          </div>
-          <Button text="Iniciar sesión" />
-        </div>
-      </>
-    );
-  };
-
   return (
     <div className="login-container">
       {/* HEADER */}
@@ -41,20 +15,7 @@ const Login = ({ changeView }) => {
       </div>
       {/* FORM */}
       <div className="login-form-container">
-        <Form disableSubmit FooterComponent={<FormFooter />}>
-          <TextInput
-            oneline
-            type="email"
-            label="Email"
-            placeholder="Ingresa tu correo electronico"
-          />
-          <TextInput
-            oneline
-            type="password"
-            label="Contraseña"
-            placeholder="La Contraseña con la que te registraste"
-          />
-        </Form>
+        <LoginForm changeView={changeView} />
       </div>
       {/* FOOTER */}
       <div className="login-footer-container">
