@@ -1,8 +1,8 @@
 import React from "react";
-import ResetPasswordForm from "../../components/forms/resetPasswordForm/ResetPasswordForm";
+import ResetPasswordForm from "../../../components/forms/resetPasswordForm/ResetPasswordForm";
 
 // CSS
-import "./css/resetpassword.css";
+import "./resetpassword.css";
 
 const ResetPassword = ({ changeView }) => {
   return (

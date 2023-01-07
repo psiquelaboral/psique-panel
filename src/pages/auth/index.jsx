@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import BoardInfo from "./BoardInfo";
-import Login from "./Login";
-import ResetPassword from "./ResetPassword";
+import BoardInfo from "./boardinfo/BoardInfo";
+import Login from "./login/Login";
+import ResetPassword from "./resetPassword/ResetPassword";
 import Signup from "./signup/Signup";
 
-import "./css/page.css";
+import "./index.css";
 
 const AuthPage = () => {
   const [activeView, setActiveView] = useState("login");

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 
@@ -8,6 +9,7 @@ import "../css/UserDropDown.css";
 
 const UserInfoMenu = ({ constainerStyles }) => {
   const [open, setOpen] = useState(false);
+  const navigation = useNavigate();
   return (
     <div className="full-container-dropdown" style={{ ...constainerStyles }}>
       {/* USER INFORMATION */}
@@ -37,7 +39,13 @@ const UserInfoMenu = ({ constainerStyles }) => {
       <div className={`dropdown-container ${open ? "active" : "inactive"}`}>
         <span>Mis subscripciones</span>
         <span>Acerca de nosotros</span>
-        <span>Cerrar session</span>
+        <span
+          onClick={() => {
+            navigation("/login");
+          }}
+        >
+          Cerrar session
+        </span>
       </div>
       {open ? (
         <div

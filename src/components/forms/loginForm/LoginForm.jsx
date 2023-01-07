@@ -1,12 +1,16 @@
 import React from "react";
 import { Button, Checkbox, Form, Input } from "antd";
+import { useNavigate } from "react-router-dom";
 
 // CSS
 import "./loginform.css";
 
 const LoginForm = ({ changeView }) => {
+  const navigation = useNavigate();
+
   const onFinish = (values) => {
     console.log("Success:", values);
+    navigation("/");
   };
 
   return (

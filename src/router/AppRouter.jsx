@@ -1,6 +1,6 @@
 import React from "react";
-import Home from "../pages/Home";
-import Employes from "../pages/Employes";
+import Home from "../pages/home/Home";
+import Employes from "../pages/employes/Employes";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import RouteLayout from "./routes/RouteLayout";
 import AuthPage from "../pages/auth";

@@ -1,6 +1,6 @@
 import React from "react";
-import LoginForm from "../../components/forms/loginForm/LoginForm";
-import "./css/login.css";
+import LoginForm from "../../../components/forms/loginForm/LoginForm";
+import "./login.css";
 
 const Login = ({ changeView }) => {
   return (
