@@ -13,10 +13,12 @@ const Login = ({ changeView }) => {
         </p>
         <p>para entrar a tu panel</p>
       </div>
+
       {/* FORM */}
       <div className="login-form-container">
         <LoginForm changeView={changeView} />
       </div>
+
       {/* FOOTER */}
       <div className="login-footer-container">
         <p>

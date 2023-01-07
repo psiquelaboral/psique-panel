@@ -13,10 +13,9 @@ const LoginForm = ({ changeView }) => {
     <Form
       name="basic"
       initialValues={{
-        remember: true,
+        remember: false,
       }}
       onFinish={onFinish}
-      onFinishFailed={() => {}}
       autoComplete="off"
       style={{ width: "100%" }}
     >
@@ -51,6 +50,8 @@ const LoginForm = ({ changeView }) => {
       >
         <Input.Password />
       </Form.Item>
+
+      {/* REMEMBERME AND SUBMIT */}
       <Form.Item>
         <div className="forgot-password-container">
           <span

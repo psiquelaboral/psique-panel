@@ -1,15 +1,10 @@
 import React from "react";
-import Button from "../../components/button/Button";
+import ResetPasswordForm from "../../components/forms/resetPasswordForm/ResetPasswordForm";
+
+// CSS
 import "./css/resetpassword.css";
-import Form from "../../components/form/form/Form";
-import TextInput from "../../components/form/input/textinput/TextInput";
 
 const ResetPassword = ({ changeView }) => {
-  const FormFooter = () => (
-    <div className="resetpassword-actions-container">
-      <Button text="Reiniciar contraseña" />
-    </div>
-  );
   return (
     <div className="resetpassword-container">
       {/* HEADER */}
@@ -23,14 +18,7 @@ const ResetPassword = ({ changeView }) => {
       </div>
       {/* FORM */}
       <div className="resetpassword-form">
-        <Form disableSubmit FooterComponent={<FormFooter />}>
-          <TextInput
-            oneline
-            type="email"
-            label="Email"
-            placeholder="Ingresa tu correo electronico"
-          />
-        </Form>
+        <ResetPasswordForm />
       </div>
       <div className="resetpassword-footer">
         <strong
