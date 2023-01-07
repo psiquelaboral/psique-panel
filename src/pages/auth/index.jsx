@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import BoardInfo from "./BoardInfo";
 import Login from "./Login";
 import ResetPassword from "./ResetPassword";
-import Signup from "./Signup";
+import Signup from "./signup/Signup";
 
 import "./css/page.css";
 
@@ -12,7 +12,7 @@ const AuthPage = () => {
   const switchView = () => {
     const view = {
       login: <Login changeView={setActiveView} />,
-      signup: <Signup />,
+      signup: <Signup changeView={setActiveView} />,
       resetpassword: <ResetPassword changeView={setActiveView} />,
     };
 

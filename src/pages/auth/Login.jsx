@@ -22,7 +22,14 @@ const Login = ({ changeView }) => {
       {/* FOOTER */}
       <div className="login-footer-container">
         <p>
-          ¿Aún no tienes una cuenta? <strong>Crear cuenta</strong>
+          ¿Aún no tienes una cuenta?{" "}
+          <strong
+            onClick={() => {
+              changeView("signup");
+            }}
+          >
+            Crear cuenta
+          </strong>
         </p>
       </div>
     </div>
