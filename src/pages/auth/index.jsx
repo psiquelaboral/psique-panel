@@ -10,16 +10,14 @@ const AuthPage = () => {
   const [activeView, setActiveView] = useState("login");
 
   const switchView = () => {
-    switch (activeView) {
-      case "login":
-        return <Login changeView={setActiveView} />;
-      case "signup":
-        return <Signup />;
-      case "resetpassword":
-        return <ResetPassword changeView={setActiveView} />;
-      default:
-        return <Login changeView={setActiveView} />;
-    }
+    const view = {
+      login: <Login changeView={setActiveView} />,
+      signup: <Signup />,
+      resetpassword: <ResetPassword changeView={setActiveView} />,
+    };
+
+    const selected = view[activeView];
+    return selected ? selected : view["signup"];
   };
 
   return (
