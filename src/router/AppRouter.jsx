@@ -2,7 +2,7 @@ import React from "react";
 import Home from "../pages/Home";
 import Employes from "../pages/Employes";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import RouteLayout from "../components/Routes/RouteLayout";
+import RouteLayout from "./routes/RouteLayout";
 import AuthPage from "../pages/auth";
 
 const AppRouter = () => {

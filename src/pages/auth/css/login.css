@@ -20,55 +20,10 @@
 .login-header-container p {
   font-size: 14px;
   color: var(--dark-background-text-color-secondary);
-  /* font-weight: 300; */
 }
 
-.form-container {
+.login-form-container {
   display: flex;
-  /* background-color: red; */
-}
-
-.login-form {
-  /* background-color: aqua; */
-  width: 100%;
-}
-
-.login-input {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-  height: 35px;
-  /* background-color: grey; */
-}
-
-.login-input label {
-  font-size: 14px;
-  font-weight: bold;
-}
-
-.login-input input {
-  border: solid;
-  border-color: #cdcaca;
-  background-color: #fff;
-  border-width: 1px;
-  border-radius: 5px;
-  padding: 8px;
-  font-size: 14px;
-  font-family: roboto;
-  width: 55%;
-}
-
-.login-input input::selection {
-  background: rgba(70, 69, 71, 0.4);
-}
-
-.login-input input::placeholder {
-  color: #ababab;
-}
-
-.login-input input:focus {
-  border: solid 1px red;
 }
 
 .forgot-password-container {
@@ -106,18 +61,6 @@
 
 .rememberme-checkbox input {
   margin-right: 10px;
-}
-
-.login-btn {
-  border: solid 1px rgba(29, 53, 196, 1);
-  color: #fff;
-  height: 35px;
-  width: 100px;
-  border-radius: 5px;
-  font-family: Roboto;
-  cursor: pointer;
-  font-size: 14px;
-  background-color: rgba(29, 53, 196, 1);
 }
 
 .login-footer-container {

@@ -1,0 +1,59 @@
+/* FLAT */
+.input-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  height: auto;
+  width: 100%;
+}
+
+.input-container label {
+  margin-bottom: 5px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.input-container input {
+  width: 96%;
+}
+
+/* OUTLINE */
+.input-container-oneline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.input-container-oneline label {
+  margin-bottom: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  width: 40%;
+}
+
+.input-container-oneline input {
+  width: 60%;
+}
+
+/* GENERAL */
+.custom-text-input {
+  border: solid;
+  border-color: #cdcaca;
+  background-color: #fff;
+  border-width: 1px;
+  border-radius: 5px;
+  padding: 8px;
+  font-size: 14px;
+  font-family: roboto;
+}
+
+.custom-text-input::selection {
+  background: rgba(29, 53, 196, 0.4);
+}
+
+.custom-text-input::placeholder {
+  color: #ababab;
+}
