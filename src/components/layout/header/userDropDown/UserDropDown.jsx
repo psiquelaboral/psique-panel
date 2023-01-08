@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 
-import profileImage from "../../../img/profile.jpeg";
-import "../css/UserDropDown.css";
+import profileImage from "../../../../img/profile.jpeg";
+import "./userdropdown.css";
 
 const UserInfoMenu = ({ constainerStyles }) => {
   const [open, setOpen] = useState(false);
@@ -29,7 +29,6 @@ const UserInfoMenu = ({ constainerStyles }) => {
           }}
         >
           <FontAwesomeIcon
-            className="brandIcon"
             style={{ fontSize: 14, color: "#fff" }}
             icon={open ? faAngleUp : faAngleDown}
           />

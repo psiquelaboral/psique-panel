@@ -1,6 +1,6 @@
 import React from "react";
-import UserDropDown from "./UserDropDown";
-import "../css/header.css";
+import UserDropDown from "./userDropDown/UserDropDown";
+import "./header.css";
 
 const Header = () => {
   return (

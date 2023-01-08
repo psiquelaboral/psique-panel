@@ -8,6 +8,9 @@ import {
   faUserCog,
 } from "@fortawesome/free-solid-svg-icons";
 
+// CSS
+import "./barmenu.css";
+
 const MenuItem = ({ title, icon, path }) => {
   const navigation = useNavigate();
   return (
@@ -18,11 +21,7 @@ const MenuItem = ({ title, icon, path }) => {
         navigation(path);
       }}
     >
-      <FontAwesomeIcon
-        className="brandIcon"
-        style={{ fontSize: 14, marginRight: 10 }}
-        icon={icon}
-      />
+      <FontAwesomeIcon style={{ fontSize: 14, marginRight: 10 }} icon={icon} />
       <p>{title}</p>
     </div>
   );

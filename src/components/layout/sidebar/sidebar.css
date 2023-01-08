@@ -22,39 +22,6 @@
   font-size: 32px;
 }
 
-.menu-container {
-  margin-top: 0;
-  background-color: transparent;
-  padding: 10px;
-  min-height: 150px;
-}
-
-.menuitem-container {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  background-color: transparent;
-  height: 35px;
-  font-size: 14px;
-  border-radius: 5px;
-  margin-bottom: 3px;
-  padding-left: 10px;
-  cursor: pointer;
-}
-
-.menuitem-container:hover {
-  background-color: var(--hover-backgound-color);
-}
-
-.sidebar-divider-text {
-  margin-left: 10px;
-  font-size: 14px;
-  margin-top: 25px;
-  margin-bottom: 5px;
-  color: var(--primary-text-color);
-  font-weight: bold;
-}
-
 .sidebar-image {
   width: 130px;
   margin-bottom: 25px;
