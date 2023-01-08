@@ -2,8 +2,49 @@
   width: 100%;
   display: flex;
   flex-direction: row;
+  height: 100vh;
 }
 
 .layout-body {
   width: 100%;
+}
+
+.trigger {
+  margin-left: 18px;
+  padding: 10px;
+  border-radius: 25px;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.trigger:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--hover-backgound-color);
+  max-height: 64px;
+  min-height: 64px;
+  padding: 10px;
+  font-family: "Kaushan Script", cursive;
+  font-size: 32px;
+  color: #fff;
+  margin-bottom: 25px;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--gradient-background);
+  height: 64px;
+  width: 100%;
+  color: #fff;
+}
+
+.header-container p {
+  margin: 0;
+  color: var(--normal-text-color);
 }

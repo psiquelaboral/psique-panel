@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
+
+import { Dropdown } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 
@@ -10,18 +12,57 @@ import "./userdropdown.css";
 const UserInfoMenu = ({ constainerStyles }) => {
   const [open, setOpen] = useState(false);
   const navigation = useNavigate();
+
+  const items = [
+    {
+      key: "1",
+      label: <span className="user-info_menu-item">Mis subscripciones</span>,
+    },
+    {
+      key: "2",
+      label: <span className="user-info_menu-item">Sobre nosotros</span>,
+    },
+    {
+      key: "3",
+      label: (
+        <span
+          onClick={() => {
+            navigation("/login");
+          }}
+          className="user-info_menu-item"
+        >
+          Cerrar sesión
+        </span>
+      ),
+    },
+  ];
+
   return (
-    <div className="full-container-dropdown" style={{ ...constainerStyles }}>
-      {/* USER INFORMATION */}
-      <div className="user-info-container">
-        {/* USER IMAGE */}
-        <img className="image-profile" src={profileImage} alt="user profile" />
-        {/* USER INFO */}
-        <div className="user-data">
-          <p className="name">Joaquin Coronado</p>
-          <p className="email">joaquin@hotmail.com</p>
-        </div>
-        {/* OPEN ARROW */}
+    <div className="user-info-container">
+      {/* USER IMAGE */}
+      <img className="image-profile" src={profileImage} alt="user profile" />
+      {/* USER INFO */}
+      <div className="user-data">
+        <p className="user-data-name">Joaquin Coronado</p>
+        <p className="user-data-email">joaquin@hotmail.com</p>
+      </div>
+      {/* OPEN ARROW */}
+      <Dropdown
+        menu={{
+          items,
+          style: {
+            padding: 10,
+          },
+        }}
+        placement="bottomRight"
+        trigger={["click"]}
+        onOpenChange={() => {
+          setOpen(!open);
+        }}
+        open={open}
+        arrow
+        overlayStyle={{ width: 190 }}
+      >
         <div
           className="menu-button-container"
           onClick={() => {
@@ -33,28 +74,7 @@ const UserInfoMenu = ({ constainerStyles }) => {
             icon={open ? faAngleUp : faAngleDown}
           />
         </div>
-      </div>
-      {/* DROPDOWN MENU */}
-      <div className={`dropdown-container ${open ? "active" : "inactive"}`}>
-        <span>Mis subscripciones</span>
-        <span>Acerca de nosotros</span>
-        <span
-          onClick={() => {
-            navigation("/login");
-          }}
-        >
-          Cerrar session
-        </span>
-      </div>
-      {open ? (
-        <div
-          className="dropdown-wrapper"
-          onClick={() => {
-            console.log("test");
-            setOpen(false);
-          }}
-        />
-      ) : null}
+      </Dropdown>
     </div>
   );
 };

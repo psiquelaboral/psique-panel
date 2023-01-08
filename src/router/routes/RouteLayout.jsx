@@ -1,8 +1,8 @@
 import React from "react";
-import Layout from "../../components/layout";
+import CustomLayout from "../../components/layout";
 
 const RouteLayout = ({ element }) => {
-  return <Layout>{element()}</Layout>;
+  return <CustomLayout>{element()}</CustomLayout>;
 };
 
 export default RouteLayout;

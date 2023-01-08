@@ -1,9 +1,9 @@
 .header-container {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   background: var(--gradient-background);
-  height: 65px;
+  height: 64px;
   width: 100%;
 }
 
