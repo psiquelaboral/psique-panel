@@ -97,7 +97,7 @@ const SignupForm = () => {
 
       {/* REMEMBERME AND SUBMIT */}
       <Form.Item>
-        <div className="resetpassword-actions-container">
+        <div className="signup-actions-container">
           <Button type="primary" htmlType="submit">
             Crear cuenta
           </Button>

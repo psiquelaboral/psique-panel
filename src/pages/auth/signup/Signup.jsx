@@ -11,10 +11,7 @@ const Signup = ({ changeView }) => {
       {/* HEADER */}
       <div className="signup-header-container">
         <h1>Crear cuenta</h1>
-        <p>
-          Crea una cuenta y obten acceso a formularios especializados para
-          realizar psicometricos
-        </p>
+        <p>Crea una cuenta y obten acceso a formularios especializados</p>
       </div>
 
       {/* FORM */}
