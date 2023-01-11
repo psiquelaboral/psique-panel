@@ -1,6 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { AreaChartOutlined, HomeFilled, UserOutlined } from "@ant-design/icons";
+import {
+  AreaChartOutlined,
+  HomeFilled,
+  UserOutlined,
+  SolutionOutlined,
+} from "@ant-design/icons";
 
 import { Menu } from "antd";
 
@@ -17,6 +22,7 @@ const BarMenu = () => {
       1: () => navigation("/"),
       2: () => navigation("/employe"),
       3: () => navigation("/psychometrics"),
+      4: () => navigation("/quiz/psychometric"),
     };
 
     router[key]();
@@ -42,6 +48,11 @@ const BarMenu = () => {
           key: "3",
           icon: <AreaChartOutlined />,
           label: "Psicométricos",
+        },
+        {
+          key: "4",
+          icon: <SolutionOutlined />,
+          label: "Iniciar cuestionario",
         },
       ]}
     />
