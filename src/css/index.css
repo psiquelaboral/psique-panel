@@ -30,6 +30,13 @@
     rgba(9, 9, 121, 1) 35%,
     rgba(29, 53, 196, 1) 100%
   );
+  --gradient-background-questions: linear-gradient(
+    38deg,
+    var(--hover-backgound-color),
+    var(--primary-backgound-color),
+    var(--medium-backgound-color),
+    #41b583
+  );
 }
 
 html,

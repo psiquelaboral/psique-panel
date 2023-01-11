@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import RouteLayout from "./routes/RouteLayout";
 import AuthPage from "../pages/auth";
 import Psychometrics from "../pages/psychometrics/Psychometrics";
+import Dashboard from "../pages/psychometricsManager/dashboard/Dashboard";
 
 const AppRouter = () => {
   return (
@@ -22,6 +23,7 @@ const AppRouter = () => {
           element={<RouteLayout element={Psychometrics} />}
         />
         <Route exact path="/login" element={<AuthPage />} />
+        <Route exact path="/quiz/psychometric" element={<Dashboard />} />
       </Routes>
     </BrowserRouter>
   );
