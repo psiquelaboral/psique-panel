@@ -11,7 +11,7 @@
 :root {
   --primary-backgound-color: rgb(44, 112, 201);
   --medium-backgound-color: rgb(19, 114, 238);
-  --hover-backgound-color: rgb(37, 84, 145);
+  --hover-backgound-color: rgb(34, 101, 190);
   --primary-text-color: rgb(222, 203, 183);
   --normal-text-color: #fffdfd;
   --dark-background-text-color: rgb(49, 47, 47);
@@ -26,9 +26,10 @@
   );
   --gradient-background-login-info: linear-gradient(
     38deg,
-    rgba(8, 8, 101, 1) 0%,
-    rgba(9, 9, 121, 1) 35%,
-    rgba(29, 53, 196, 1) 100%
+    var(--hover-backgound-color),
+    var(--primary-backgound-color),
+    var(--medium-backgound-color),
+    #41b583
   );
   --gradient-background-questions: linear-gradient(
     38deg,
