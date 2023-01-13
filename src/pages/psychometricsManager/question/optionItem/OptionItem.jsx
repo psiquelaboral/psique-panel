@@ -3,9 +3,14 @@ import { CheckCircleFilled } from "@ant-design/icons";
 
 import "./optionitem.css";
 
-const OptionItem = ({ text, selected, onClick }) => {
+const OptionItem = ({ text, selected, loading, onClick }) => {
   return (
-    <div className="option-item-container" onClick={onClick}>
+    <button
+      className="option-item-container"
+      disabled={loading}
+      size="large"
+      onClick={onClick}
+    >
       <div className="option-item-checked">
         <CheckCircleFilled
           className={selected ? "response-selected" : "checked-icon"}
@@ -15,7 +20,7 @@ const OptionItem = ({ text, selected, onClick }) => {
       <div className="option-text-container">
         <p className="option-item-text">{text}</p>
       </div>
-    </div>
+    </button>
   );
 };
 

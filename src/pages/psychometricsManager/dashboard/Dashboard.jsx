@@ -1,67 +1,54 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 import { Button, Statistic, Carousel } from "antd";
 import { RightOutlined } from "@ant-design/icons";
 import Question from "../question/question/Question";
+import { GUIA_3 } from "../../../apis/dommy/nom35/nom35-quiz";
 import "./dashboard.css";
 
-const options = [
-  {
-    id: 1,
-    text: "😁 Siempre",
-  },
-  {
-    id: 2,
-    text: "😊 Casi siempre",
-  },
-  {
-    id: 3,
-    text: "🤔 Algunas veces",
-  },
-  {
-    id: 4,
-    text: "😒 Casi nunca",
-  },
-  {
-    id: 5,
-    text: "😡 Nunca",
-  },
-];
-
-const questions = [
-  {
-    id: 1,
-    text: "El espacio donde trabajo me permite realizar mis actividades de manera segura e higiénica",
-    options: options,
-  },
-  {
-    id: 2,
-    text: "Mi trabajo me exige hacer mucho esfuerzo físico",
-    options: options,
-  },
-  {
-    id: 3,
-    text: "Me preocupa sufrir un accidente en mi trabajo",
-    options: options,
-  },
-  {
-    id: 4,
-    text: "Considero que en mi trabajo se aplican las normas de seguridad y salud en el trabajo",
-    options: options,
-  },
-  {
-    id: 5,
-    text: "Considero que las actividades que realizo son peligrosas",
-    options: options,
-  },
-];
-
 const Dashboard = () => {
+  const [userResponses, setUserResponses] = useState({ responses: [] });
   const [selectedQuestion, setSelectedQuestion] = useState(0);
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [isNextDisabled, setIsNextDisabled] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const slider = useRef(null);
 
-  const onChange = (currentSlide) => {
+  const { name, id, description, questions } = GUIA_3;
+
+  useEffect(() => {
+    setUserResponses({
+      ...userResponses,
+      quizId: id,
+      name,
+      description,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const onSelectedOption = (selectedOption) => {
+    setIsNextDisabled(false);
+    setSelectedOption(selectedOption);
+  };
+
+  const nextQuestionHanlder = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      console.log("options saved", selectedOption);
+      setUserResponses({
+        ...userResponses,
+        responses: [...userResponses.responses, selectedOption],
+      });
+      setSelectedOption(null);
+      slider.current.next();
+      setIsNextDisabled(true);
+      setIsLoading(false);
+    }, 1000);
+  };
+
+  const afterCaroucelChange = (currentSlide) => {
     setSelectedQuestion(currentSlide);
+    console.log(questions[currentSlide]);
   };
 
   return (
@@ -80,9 +67,14 @@ const Dashboard = () => {
         </div>
 
         {/* QUESTION */}
-        <Carousel ref={slider} afterChange={onChange} dots={false}>
+        <Carousel ref={slider} afterChange={afterCaroucelChange} dots={false}>
           {questions.map((question) => (
-            <Question key={question.id} question={question} />
+            <Question
+              loading={isLoading}
+              key={question.id}
+              question={question}
+              onSelect={onSelectedOption}
+            />
           ))}
         </Carousel>
 
@@ -90,16 +82,17 @@ const Dashboard = () => {
         <div className="dashboard-controls-container">
           <p>Siguiente</p>
 
-          <Button
-            disabled={selectedQuestion === questions.length - 1}
-            shape="circle"
-            size="large"
-            block={true}
-            icon={<RightOutlined />}
-            onClick={() => {
-              slider.current.next();
-            }}
-          />
+          {selectedQuestion === questions.length - 1 ? null : (
+            <Button
+              disabled={isNextDisabled}
+              shape="circle"
+              size="large"
+              block={true}
+              loading={isLoading}
+              icon={<RightOutlined />}
+              onClick={nextQuestionHanlder}
+            />
+          )}
         </div>
       </div>
     </div>
