@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Button, Checkbox, Form, Input, notification } from "antd";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../../apis/psique/psiqueAuthApi";
+import { useDispatch } from "react-redux";
+import { getAsyncUser } from "../../../store/slices/user/thunks";
 
 // CSS
 import "./loginform.css";
@@ -10,6 +12,7 @@ const LoginForm = ({ changeView }) => {
   let [isLoading, setIsLoading] = useState(false);
   const navigation = useNavigate();
   const [api, contextHolder] = notification.useNotification();
+  const dispatch = useDispatch();
 
   const error = () => {
     api.error({
@@ -20,7 +23,6 @@ const LoginForm = ({ changeView }) => {
   };
 
   const onFinish = (values) => {
-    console.log("Success:", values);
     let { email, password } = values;
 
     const loginExecutor = async () => {
@@ -29,8 +31,9 @@ const LoginForm = ({ changeView }) => {
         let response = await login({ email, password });
         let { data } = response;
         localStorage.setItem("accessToken", data.accessToken);
+        localStorage.setItem("idUser", data.id);
+        dispatch(getAsyncUser(data.id));
         navigation("/");
-        console.log(response);
       } catch (e) {
         setIsLoading(false);
         error();
