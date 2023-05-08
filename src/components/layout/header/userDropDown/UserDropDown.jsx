@@ -27,6 +27,7 @@ const UserInfoMenu = ({ constainerStyles }) => {
       label: (
         <span
           onClick={() => {
+            localStorage.removeItem("accessToken");
             navigation("/login");
           }}
           className="user-info_menu-item"

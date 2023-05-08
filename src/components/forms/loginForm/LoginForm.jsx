@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Checkbox, Form, Input } from "antd";
 import { useNavigate } from "react-router-dom";
+import { login } from "../../../apis/psique/psiqueAuthApi";
 
 // CSS
 import "./loginform.css";
@@ -10,7 +11,21 @@ const LoginForm = ({ changeView }) => {
 
   const onFinish = (values) => {
     console.log("Success:", values);
-    navigation("/");
+    let { email, password } = values;
+
+    const loginExecutor = async () => {
+      try {
+        let response = await login({ email, password });
+        let { data } = response;
+        localStorage.setItem("accessToken", data.accessToken);
+        navigation("/");
+        console.log(response);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+
+    loginExecutor();
   };
 
   return (
