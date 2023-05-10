@@ -1,10 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
+import { notification } from "antd";
 import LoginForm from "../../../components/forms/loginForm/LoginForm";
 import "./login.css";
 
 const Login = ({ changeView }) => {
+  const [api, contextHolder] = notification.useNotification();
+  const [searchParams] = useSearchParams();
+
+  useEffect(() => {
+    let expiredSession = searchParams.get("expiredSession");
+    if (expiredSession === "true") {
+      const sessionExpiderMessage = () => {
+        api.info({
+          key: "sessionExiredNotification",
+          message: `Session terminada!!`,
+          description: "Tu sesión expiro, inicia sesion de nuevo",
+          placement: "topLeft",
+        });
+      };
+      sessionExpiderMessage();
+    }
+  }, [api, searchParams]);
+
   return (
     <div className="login-container">
+      {contextHolder}
       {/* HEADER */}
       <div className="login-header-container">
         <h1>Iniciar sesión</h1>

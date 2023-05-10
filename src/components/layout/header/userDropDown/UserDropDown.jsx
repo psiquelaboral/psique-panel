@@ -8,6 +8,7 @@ import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 
 import { useSelector, useDispatch } from "react-redux";
 import { getAsyncUser } from "../../../../store/slices/user/thunks";
+import { cleanUserData } from "../../../../store/slices/user/userSlice";
 import "./userdropdown.css";
 
 const UserInfoMenu = ({ constainerStyles }) => {
@@ -46,7 +47,7 @@ const UserInfoMenu = ({ constainerStyles }) => {
           onClick={() => {
             localStorage.removeItem("accessToken");
             localStorage.removeItem("idUser");
-
+            dispatch(cleanUserData());
             navigation("/login");
           }}
           className="user-info_menu-item"
