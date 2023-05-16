@@ -12,7 +12,7 @@ const Question = ({ question, loading, onSelect }) => {
       setSelected(option.id);
       onSelect({
         questionId: question.id,
-        nom35ItemId: question.itemId,
+        itemId: question.itemId,
         questionText: question.text,
         answerType: question.answerType,
         selectedOption: option,

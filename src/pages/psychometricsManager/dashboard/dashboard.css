@@ -54,3 +54,7 @@
   align-items: center;
   justify-content: center;
 }
+
+.next-quiz-button {
+  width: 185px;
+}

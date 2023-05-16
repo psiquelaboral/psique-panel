@@ -43,7 +43,7 @@ const AppRouter = () => {
 
         <Route
           exact
-          path="/quiz/psychometric"
+          path="/quiz/psychometric/:quizId/:employeeId"
           element={
             <PrivateRoute>
               <Dashboard />
