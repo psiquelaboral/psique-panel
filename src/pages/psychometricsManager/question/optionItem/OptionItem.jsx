@@ -6,7 +6,11 @@ import "./optionitem.css";
 const OptionItem = ({ text, selected, loading, onClick }) => {
   return (
     <button
-      className="option-item-container"
+      className={
+        selected
+          ? "option-item-container option-item-container-selected"
+          : "option-item-container"
+      }
       disabled={loading}
       size="large"
       onClick={onClick}

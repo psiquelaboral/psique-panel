@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-
+import { CaretRightOutlined } from "@ant-design/icons";
 import OptionItem from "../optionItem/OptionItem";
 import "./question.css";
 
 const Question = ({ question, loading, onSelect }) => {
   const [selected, setSelected] = useState();
-  const { text, options } = question;
+  const { text, options, id, instructions } = question;
 
   const switchOptionItem = (type, option) => {
     const handleOnClick = () => {
@@ -48,7 +48,12 @@ const Question = ({ question, loading, onSelect }) => {
   return (
     <div className="question-container">
       <div className="question-title-container">
-        <p className="question-text">{text}</p>
+        <p className="question-text">
+          {id}
+          <CaretRightOutlined style={{ fontSize: 24, marginRight: 5 }} />
+          {text}
+        </p>
+        <p className="instruction-text"> {instructions}</p>
       </div>
       <div className="on-question-question-options-container">
         {options.map((option) => switchOptionItem(question.answerType, option))}

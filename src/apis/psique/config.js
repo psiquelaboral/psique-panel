@@ -2,8 +2,11 @@ import axios from "axios";
 import { store } from "../../store/store";
 import { cleanUserData } from "../../store/slices/user/userSlice";
 
+const URL_BASE_PROD = "https://p01--psique-api--qpfx26t9ms8m.code.run";
+//const URL_BASE_LOCAL = "http://localhost:8080/";
+
 export const psiqueApi = axios.create({
-  baseURL: "http://localhost:8080/",
+  baseURL: URL_BASE_PROD,
 });
 
 psiqueApi.interceptors.response.use(

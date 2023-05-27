@@ -23,7 +23,7 @@ const BarMenu = () => {
       2: () => navigation("/employe"),
       3: () => navigation("/psychometrics"),
       4: () =>
-        navigation("/quiz/psychometric/645f3bd8cecc4248e3498009/xxxxxxx"),
+        navigation("/quiz/psychometric/6471ccd2ec42b248081e548b/xxxxxxx"),
     };
 
     router[key]();

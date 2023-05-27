@@ -1,50 +1,95 @@
 import React, { useState, useRef, useEffect } from "react";
 
-import { Button, Statistic, Carousel } from "antd";
-import { RightOutlined } from "@ant-design/icons";
+import { Button, Carousel, Skeleton } from "antd";
+import { RightOutlined, CheckCircleFilled } from "@ant-design/icons";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getAsyncQuizById } from "../../../store/slices/quiz/thunks";
-import { setAnswers } from "../../../store/slices/quiz/quizSlice";
+import { asyncRegistryAnswer } from "../../../store/slices/quiz/thunks";
 import Question from "../question/question/Question";
+import {
+  initializeAnswer,
+  finalizeAnswer,
+} from "../../../apis/psique/answerApi";
+import { getQuizById } from "../../../apis/psique/quizApi";
+import {
+  setCurrentQuiz,
+  setAnswers,
+} from "../../../store/slices/quiz/quizSlice";
 import "./dashboard.css";
 
 const Dashboard = () => {
-  const [selectedQuestion, setSelectedQuestion] = useState(0);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
   const [isNextDisabled, setIsNextDisabled] = useState(true);
+  const [isAnswercompleted, setIsAnswercompleted] = useState(false);
 
   const dispatch = useDispatch();
   const quizFromRedux = useSelector((state) => state.quiz.currentQuiz);
   const answersFromRedux = useSelector((state) => state.quiz.answers);
 
-  let { quizId } = useParams();
-  const [isLoading, setIsLoading] = useState(false);
+  let { quizId, employeeId } = useParams();
+  const [isLoading, setIsLoading] = useState(true);
   const slider = useRef(null);
 
-  const {
-    name,
-    id,
-    description,
-    questions = [],
-  } = quizFromRedux ? quizFromRedux : {};
+  const { questions = [] } = quizFromRedux
+    ? quizFromRedux
+    : { questions: [], name: "", description: "" };
+
+  const onInit = async () => {
+    if (answersFromRedux === null || quizFromRedux === null) {
+      try {
+        setIsLoading(true);
+        const quizFromApi = await getQuizById(quizId);
+        const quiz = quizFromApi.data;
+
+        const answersFromApi = await initializeAnswer({
+          quizId,
+          employeeId,
+          name: quizFromApi.data.name,
+          description: quizFromApi.data.description,
+        });
+        const answer = answersFromApi.data;
+
+        dispatch(setCurrentQuiz(quiz));
+        dispatch(setAnswers(answer));
+
+        setCurrentQuestion(answer?.responses?.length);
+        // if (answer?.responses?.length > 0) {
+        //   slider.current.goTo(answer.responses.length, false);
+        // }
+      } catch (e) {
+        console.log(e);
+      }
+      setIsLoading(false);
+    }
+
+    validateAnswerStatus();
+  };
+
+  const validateAnswerStatus = () => {
+    if (answersFromRedux?.status === "DONE") {
+      setIsAnswercompleted(true);
+    }
+  };
+
+  const finalizeAnswerExecutor = async () => {
+    try {
+      const newAnswers = await finalizeAnswer(answersFromRedux.id);
+      dispatch(setAnswers(newAnswers.data));
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   useEffect(() => {
-    if (quizFromRedux === null) {
-      dispatch(getAsyncQuizById(quizId));
-    }
-    dispatch(
-      setAnswers({
-        quizId: id,
-        name,
-        description,
-        responses: quizFromRedux?.responses
-          ? [...answersFromRedux.responses]
-          : [],
-      })
-    );
+    onInit();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [quizFromRedux]);
+  }, [quizId, employeeId]);
+
+  useEffect(() => {
+    validateAnswerStatus();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [answersFromRedux]);
 
   const onSelectedOption = (selectedOption) => {
     setIsNextDisabled(false);
@@ -53,88 +98,115 @@ const Dashboard = () => {
 
   const nextQuestionHanlder = () => {
     setIsLoading(true);
-    setTimeout(() => {
-      console.log("options saved", selectedOption);
-      dispatch(
-        setAnswers({
-          ...answersFromRedux,
-          responses: [...answersFromRedux.responses, selectedOption],
-        })
-      );
-      setSelectedOption(null);
-      slider.current.next();
-      setIsNextDisabled(true);
-      setIsLoading(false);
-    }, 1);
+    console.log("options saved", selectedOption);
+
+    dispatch(asyncRegistryAnswer(answersFromRedux.id, selectedOption));
+
+    setSelectedOption(null);
+    slider.current.next();
+    setIsNextDisabled(true);
+    setIsLoading(false);
+  };
+
+  const finalizeQuestionHanlder = () => {
+    setIsLoading(true);
+    console.log("options saved", selectedOption);
+    dispatch(asyncRegistryAnswer(answersFromRedux.id, selectedOption));
+    setSelectedOption(null);
+    setIsNextDisabled(true);
+
+    //finalize
+    finalizeAnswerExecutor();
+    setIsLoading(false);
   };
 
   const afterCaroucelChange = (currentSlide) => {
-    setSelectedQuestion(currentSlide);
-    console.log(questions[currentSlide]);
+    setCurrentQuestion(currentSlide);
   };
 
   return (
     <div className="dashboar-container">
-      <div className="dashboard-questions-container">
+      <Skeleton loading={isLoading}>
         {/* STATIC CONTENT */}
         <div className="static-container">
-          <div className="static-content">
-            <Statistic
-              title="Preguntas"
-              value={selectedQuestion + 1}
-              suffix={"/ " + questions.length}
-              style={{ color: "#fff" }}
-            />
-          </div>
+          {!isAnswercompleted ? (
+            <div className="static-content">
+              {`${currentQuestion + 1} / ${questions.length}    preguntas`}
+            </div>
+          ) : null}
         </div>
-
-        {/* QUESTION */}
-        <Carousel ref={slider} afterChange={afterCaroucelChange} dots={false}>
-          {questions.map((question) => {
-            return (
-              <Question
-                loading={isLoading}
-                key={question.itemId}
-                question={question}
-                onSelect={onSelectedOption}
-              />
-            );
-          })}
-        </Carousel>
-
-        {/* CONTROLS */}
-        <div className="dashboard-controls-container">
-          {selectedQuestion === questions.length - 1 ? (
-            <div className="next-quiz-button">
-              <Button
-                className="next-quiz-button"
-                disabled={isNextDisabled}
-                size="large"
-                block={true}
-                loading={isLoading}
-                onClick={() => {
-                  console.log("Quiz completed");
-                }}
-              >
-                Terminar formulario
-              </Button>
+        <div className="dashboard-questions-container">
+          {isAnswercompleted ? (
+            <div className="success-container">
+              <CheckCircleFilled className="success-icon" />
+              <div className="success-text-container">
+                <p className="success-main-text">
+                  <strong>El formulario ha sido completado</strong>
+                </p>
+                <p className="success-secondary-text">
+                  Ahora sera posible que en tu empresa se den cuenta de la
+                  reaildad en la que se desempeñan tu y tus compañeros.
+                </p>
+              </div>
             </div>
           ) : (
-            <div className="next-quiz-button">
-              <Button
-                disabled={isNextDisabled}
-                size="large"
-                block={true}
-                loading={isLoading}
-                onClick={nextQuestionHanlder}
+            <>
+              {/* QUESTION */}
+              <Carousel
+                ref={slider}
+                afterChange={afterCaroucelChange}
+                dots={false}
+                lazyLoad={true}
+                swipe={false}
+                waitForAnimate={true}
+                speed={1000}
+                initialSlide={currentQuestion}
               >
-                Siguiente Pregunta
-                <RightOutlined />
-              </Button>
-            </div>
+                {questions.map((question) => {
+                  return (
+                    <Question
+                      loading={isLoading}
+                      key={question.itemId}
+                      question={question}
+                      onSelect={onSelectedOption}
+                    />
+                  );
+                })}
+              </Carousel>
+
+              {/* CONTROLS */}
+              <div className="dashboard-controls-container">
+                {currentQuestion === questions.length - 1 ? (
+                  <div className="next-quiz-button">
+                    <Button
+                      className="next-quiz-button"
+                      disabled={isNextDisabled}
+                      size="large"
+                      block={true}
+                      loading={isLoading}
+                      onClick={finalizeQuestionHanlder}
+                    >
+                      Terminar formulario
+                    </Button>
+                  </div>
+                ) : (
+                  <div className="next-quiz-button">
+                    <Button
+                      disabled={isNextDisabled}
+                      block={true}
+                      loading={isLoading}
+                      onClick={nextQuestionHanlder}
+                    >
+                      Siquiente pregunta
+                      <RightOutlined />
+                    </Button>
+                  </div>
+                )}
+              </div>
+            </>
           )}
         </div>
-      </div>
+      </Skeleton>
     </div>
   );
 };

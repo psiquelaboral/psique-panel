@@ -10,16 +10,24 @@ export const quizSlice = createSlice({
     setCurrentQuiz: (state, action) => {
       state.currentQuiz = action.payload;
     },
+    cleanCurrentQuiz: (state, _action) => {
+      state.currentQuiz = null;
+    },
     setAnswers: (state, action) => {
       state.answers = action.payload;
     },
-    cleanCurrentQuiz: (state, _action) => {
-      state.currentQuiz = null;
+    registrySelectedOption: (state, action) => {
+      const responses = state.answers.responses;
+      state.answers.responses = [...responses, action.payload];
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setCurrentQuiz, cleanCurrentQuiz, setAnswers } =
-  quizSlice.actions;
+export const {
+  setCurrentQuiz,
+  cleanCurrentQuiz,
+  setAnswers,
+  registrySelectedOption,
+} = quizSlice.actions;
 export default quizSlice.reducer;
