@@ -1,12 +1,9 @@
 import axios from "axios";
-import { store } from "../../store/store";
-import { cleanUserData } from "../../store/slices/user/userSlice";
-
-const URL_BASE_PROD = "https://p01--psique-api--qpfx26t9ms8m.code.run";
-//const URL_BASE_LOCAL = "http://localhost:8080/";
+import { store } from "@store/store";
+import { cleanUserData } from "@store/slices/user/userSlice";
 
 export const psiqueApi = axios.create({
-  baseURL: URL_BASE_PROD,
+  baseURL: process.env.REACT_APP_PSIQUE_API_HOST,
 });
 
 psiqueApi.interceptors.response.use(
