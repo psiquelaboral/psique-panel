@@ -9,3 +9,7 @@ export const getUserById = (id) => {
   };
   return psiqueApi.get(`/user/${id}`, config);
 };
+
+export const signup = ({ name, email, password }) => {
+  return psiqueApi.post(`/user/signup`, { name, email, password });
+};

@@ -1,46 +1,19 @@
 import React, { useState } from "react";
-import { Button, Checkbox, Form, Input, notification } from "antd";
-import { useNavigate } from "react-router-dom";
-import { login } from "../../../apis/psique/psiqueAuthApi";
-import { useDispatch } from "react-redux";
-import { getAsyncUser } from "../../../store/slices/user/thunks";
+import { Button, Checkbox, Form, Input } from "antd";
+import useLogin from "@hooks/login";
 
 // CSS
 import "./loginform.css";
 
 const LoginForm = ({ changeView }) => {
-  let [isLoading, setIsLoading] = useState(false);
-  const navigation = useNavigate();
-  const [api, contextHolder] = notification.useNotification();
-  const dispatch = useDispatch();
+  const [loginData, setLoginData] = useState({ flag: true });
+  const { email, password, flag } = loginData;
 
-  const error = () => {
-    api.error({
-      message: `Error al iniciar sesion`,
-      description: "Las credenciales no son correctas",
-      placement: "topLeft",
-    });
-  };
+  const [isLoading, contextHolder] = useLogin(email, password, flag);
 
   const onFinish = (values) => {
     let { email, password } = values;
-
-    const loginExecutor = async () => {
-      try {
-        setIsLoading(true);
-        let response = await login({ email, password });
-        let { data } = response;
-        localStorage.setItem("accessToken", data.accessToken);
-        localStorage.setItem("idUser", data.id);
-        dispatch(getAsyncUser(data.id));
-        navigation("/");
-      } catch (e) {
-        setIsLoading(false);
-        error();
-      }
-    };
-
-    loginExecutor();
+    setLoginData({ email, password, flag: !flag });
   };
 
   return (
