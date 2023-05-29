@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { notification } from "antd";
-import LoginForm from "../../../components/forms/loginForm/LoginForm";
+import LoginForm from "@components/forms/loginForm/LoginForm";
 import "./login.css";
 
 const Login = ({ changeView }) => {

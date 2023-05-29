@@ -1,14 +1,15 @@
+//components
 import {
   setCurrentQuiz,
   setAnswers,
   registrySelectedOption,
 } from "./quizSlice";
-import { getQuizById } from "../../../apis/psique/quizApi";
+import { getQuizById } from "@apis/psique/quizApi";
 import {
   initializeAnswer,
   registryAnswer,
   retriveAnswer,
-} from "../../../apis/psique/answerApi";
+} from "@apis/psique/answerApi";
 
 export const getAsyncQuizById = (userId) => {
   return async (dispatch, _getState) => {
