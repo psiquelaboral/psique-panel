@@ -28,7 +28,7 @@ const Login = ({ changeView }) => {
       {contextHolder}
       {/* HEADER */}
       <div className="login-header-container">
-        <h1>Iniciar sesión - EDITADO</h1>
+        <h1>Iniciar sesión - EDITADO - 2</h1>
         <p>
           Bienvenido a Psique Psicometricos, por favor ingresa tus credenciales
         </p>
