@@ -1,34 +1,33 @@
+//libraries
 import React, { useState, useRef, useEffect } from "react";
-
 import { Button, Carousel, Skeleton } from "antd";
 import { RightOutlined, CheckCircleFilled } from "@ant-design/icons";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { asyncRegistryAnswer } from "../../../store/slices/quiz/thunks";
+
+//components
 import Question from "../question/question/Question";
-import {
-  initializeAnswer,
-  finalizeAnswer,
-} from "../../../apis/psique/answerApi";
-import { getQuizById } from "../../../apis/psique/quizApi";
-import {
-  setCurrentQuiz,
-  setAnswers,
-} from "../../../store/slices/quiz/quizSlice";
+import { asyncRegistryAnswer } from "@store/slices/quiz/thunks";
+import { initializeAnswer, finalizeAnswer } from "@apis/psique/answerApi";
+import { getQuizById } from "@apis/psique/quizApi";
+import { setCurrentQuiz, setAnswers } from "@store/slices/quiz/quizSlice";
+
+//css
 import "./dashboard.css";
 
 const Dashboard = () => {
+  //component state
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
   const [isNextDisabled, setIsNextDisabled] = useState(true);
   const [isAnswercompleted, setIsAnswercompleted] = useState(false);
 
+  //hooks invocations
   const dispatch = useDispatch();
   const quizFromRedux = useSelector((state) => state.quiz.currentQuiz);
   const answersFromRedux = useSelector((state) => state.quiz.answers);
-
-  let { quizId, employeeId } = useParams();
   const [isLoading, setIsLoading] = useState(true);
+  let { quizId, employeeId } = useParams();
   const slider = useRef(null);
 
   const { questions = [] } = quizFromRedux
@@ -135,8 +134,11 @@ const Dashboard = () => {
             </div>
           ) : null}
         </div>
+
+        {/* QUESTIONS CONTAINER */}
         <div className="dashboard-questions-container">
           {isAnswercompleted ? (
+            // COMPLETE QUIZ STATUS
             <div className="success-container">
               <CheckCircleFilled className="success-icon" />
               <div className="success-text-container">

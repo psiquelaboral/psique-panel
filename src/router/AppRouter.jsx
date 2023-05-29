@@ -1,12 +1,15 @@
+//libraries
 import React from "react";
-import Home from "../pages/home/Home";
-import Employes from "../pages/employes/Employes";
 import { HashRouter, Routes, Route } from "react-router-dom";
+
+//components
 import RouteLayout from "./routes/RouteLayout";
 import PrivateRoute from "./routes/PrivateRoute";
-import AuthPage from "../pages/auth";
-import Psychometrics from "../pages/psychometrics/Psychometrics";
-import Dashboard from "../pages/psychometricsManager/dashboard/Dashboard";
+import Home from "@pages/home/Home";
+import Employes from "@pages/employes/Employes";
+import AuthPage from "@pages/auth";
+import Psychometrics from "@pages/psychometrics/Psychometrics";
+import Dashboard from "@pages/psychometricsManager/dashboard/Dashboard";
 
 const AppRouter = () => {
   return (

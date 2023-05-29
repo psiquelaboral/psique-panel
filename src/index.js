@@ -1,9 +1,13 @@
+//libraries
 import React from "react";
 import ReactDOM from "react-dom/client";
-import AppRouter from "./router/AppRouter";
 import { Provider } from "react-redux";
-import "../src/css/index.css";
+//comonents
+import AppRouter from "./router/AppRouter";
 import { store } from "./store/store";
+
+//css
+import "../src/css/index.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

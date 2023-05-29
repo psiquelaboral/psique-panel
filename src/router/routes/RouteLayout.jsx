@@ -1,5 +1,8 @@
+//libraries
 import React from "react";
-import CustomLayout from "../../components/layout";
+
+//components
+import CustomLayout from "@components/layout";
 
 const RouteLayout = ({ element }) => {
   return <CustomLayout>{element()}</CustomLayout>;

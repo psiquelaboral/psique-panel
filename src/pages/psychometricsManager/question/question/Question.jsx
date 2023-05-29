@@ -1,6 +1,9 @@
+//libraries
 import React, { useState } from "react";
 import { CaretRightOutlined } from "@ant-design/icons";
 import OptionItem from "../optionItem/OptionItem";
+
+//css
 import "./question.css";
 
 const Question = ({ question, loading, onSelect }) => {

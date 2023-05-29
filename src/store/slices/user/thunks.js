@@ -1,5 +1,6 @@
+//components
 import { setUser } from "./userSlice";
-import { getUserById } from "../../../apis/psique/userApi";
+import { getUserById } from "@apis/psique/userApi";
 
 export const getAsyncUser = (userId) => {
   return async (dispatch, _getState) => {

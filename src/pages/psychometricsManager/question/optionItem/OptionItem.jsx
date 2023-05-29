@@ -1,6 +1,8 @@
+//libraries
 import React from "react";
 import { CheckCircleFilled } from "@ant-design/icons";
 
+//css
 import "./optionitem.css";
 
 const OptionItem = ({ text, selected, loading, onClick }) => {
