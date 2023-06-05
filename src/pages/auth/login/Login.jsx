@@ -30,9 +30,9 @@ const Login = ({ changeView }) => {
       <div className="login-header-container">
         <h1>Iniciar sesión</h1>
         <p>
-          Bienvenido a Psique Psicometricos, por favor ingresa tus credenciales
+          Bienvenido a Psique Psicometricos, por favor ingresa tus usuario y
+          contraseña para entrar a tu panel
         </p>
-        <p>para entrar a tu panel</p>
       </div>
 
       {/* FORM */}

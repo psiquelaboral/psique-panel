@@ -11,9 +11,9 @@ const ResetPassword = ({ changeView }) => {
       <div className="resetpassword-header">
         <h1>Recuperar mi contraseña</h1>
         <p>
-          Ingresa el correo electronico con el cual te registraste en Psique
-          Psicometricos, recibiras un email con instrucciones para cambiar tu
-          contraseña
+          Por favor, ingresa el correo electronico con el cual te registraste en
+          Psique Psicometricos, recibiras un email con instrucciones para
+          cambiar tu contraseña
         </p>
       </div>
       {/* FORM */}

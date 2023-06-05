@@ -1,18 +1,25 @@
 .signup-container {
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
-  padding: 10px;
-  width: 450px;
+  width: 100%;
 }
 
 .signup-header-container {
-  margin-bottom: 25px;
+  margin-bottom: 55px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 100%;
+  max-width: 435px;
 }
 
 .signup-header-container h1 {
   font-size: 22px;
   font-weight: bold;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   color: var(--dark-background-text-color);
 }
 
@@ -23,6 +30,9 @@
 
 .signup-form-container {
   display: flex;
+  /* background-color: red; */
+  width: 100%;
+  max-width: 435px;
 }
 
 .signup-footer-container {
@@ -37,4 +47,36 @@
   color: rgba(29, 53, 196, 1);
   font-size: 14px;
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .signup-header-container {
+    margin-bottom: 3%;
+  }
+}
+
+@media (max-width: 500px) {
+  .signup-header-container {
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    width: auto;
+  }
+
+  .signup-form-container {
+    width: 90%;
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+
+  .signup-actions-container {
+    justify-content: center;
+    align-items: stretch;
+    flex-direction: column;
+    margin-bottom: 0px;
+  }
+
+  .signup-footer-container {
+    margin-bottom: 35px;
+  }
 }

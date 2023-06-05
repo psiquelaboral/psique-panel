@@ -27,7 +27,10 @@ const useLogin = (email, password, flag) => {
     if (!email && !password) return;
     try {
       setIsLoading(true);
-      let response = await login({ email, password });
+      let response = await login({
+        email: email.toLowerCase(),
+        password,
+      });
       let { data } = response;
       persistLoginData(data.accessToken, data.id);
       dispatch(getAsyncUser(data.id));

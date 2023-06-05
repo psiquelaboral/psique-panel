@@ -31,7 +31,10 @@ const AuthPage = () => {
 
   return (
     <div className="auth-container">
-      <div className="section-a">{switchView()}</div>
+      <div className="section-a">
+        <div className="section-a-header section-a-header-logo">Psique</div>
+        {switchView()}
+      </div>
       <div className="section-b">
         <BoardInfo />
       </div>
