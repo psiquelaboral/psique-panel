@@ -22,12 +22,13 @@ const LoginForm = ({ changeView }) => {
       <Form
         name="basic"
         initialValues={{
-          remember: false,
+          remember: true,
         }}
         onFinish={onFinish}
         autoComplete="off"
         style={{ width: "100%" }}
         disabled={isLoading}
+        size="large"
       >
         {/* EMAIL */}
         <Form.Item

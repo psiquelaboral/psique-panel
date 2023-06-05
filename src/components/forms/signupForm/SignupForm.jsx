@@ -41,7 +41,6 @@ const SignupForm = () => {
     <>
       {contextHolder}
       <Form
-        layout="vertical"
         name="signupForm"
         initialValues={{
           remember: false,
@@ -50,11 +49,13 @@ const SignupForm = () => {
         autoComplete="off"
         style={{ width: "100%" }}
         disabled={isLoading}
+        size="large"
       >
         {/* NAME */}
         <Form.Item
           label="Nombre"
           name="name"
+          labelCol={{ sm: { pull: 5, offset: 5 } }}
           colon={false}
           rules={[
             {
@@ -70,10 +71,11 @@ const SignupForm = () => {
         <Form.Item
           label="Empresa"
           name="company"
+          labelCol={{ sm: { pull: 5, offset: 5 } }}
           colon={false}
           rules={[
             {
-              required: false,
+              required: true,
             },
           ]}
         >
@@ -82,6 +84,7 @@ const SignupForm = () => {
 
         {/* EMAIL */}
         <Form.Item
+          labelCol={{ sm: { pull: 6, offset: 6 } }}
           label="Email"
           name="email"
           colon={false}
@@ -98,6 +101,7 @@ const SignupForm = () => {
 
         {/* PASSWORD */}
         <Form.Item
+          labelCol={{ sm: { pull: 4, offset: 4 } }}
           label="Contraseña"
           name="password"
           colon={false}
@@ -113,7 +117,7 @@ const SignupForm = () => {
 
         {/* CONFIRM PASSWORD */}
         <Form.Item
-          label="Confirma tu ontraseña"
+          label="Confirma tu contraseña"
           name="confirmPassword"
           colon={false}
           rules={[

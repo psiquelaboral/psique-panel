@@ -1,15 +1,32 @@
 .auth-container {
   display: flex;
-  height: 100vh;
-  background-color: var(--normal-text-color);
+  min-height: 100vh;
+  background-color: #ffffff;
 }
 
 .section-a {
   display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  width: 50%;
+  background-color: #ffffff;
+}
+
+.section-a-header {
+  display: flex;
   justify-content: center;
   align-items: center;
-  width: 50%;
-  background-color: #f9f9f9;
+  background-color: rgb(19, 114, 238);
+  width: 100%;
+  min-height: 65px;
+  margin-bottom: 15%;
+}
+
+.section-a-header-logo {
+  font-family: "Kaushan Script", cursive;
+  font-size: 28px;
+  color: white;
 }
 
 .section-b {
@@ -26,5 +43,11 @@
   }
   .section-b {
     display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-a-header {
+    margin-bottom: 10%;
   }
 }

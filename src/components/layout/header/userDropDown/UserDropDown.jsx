@@ -58,10 +58,27 @@ const UserInfoMenu = ({ constainerStyles }) => {
     },
   ];
 
+  const generateProfilePicturePlaceHolder = (userName) => {
+    const array = userName.split(" ");
+    let placeHolder = array[0][0];
+    if (array.length > 1) {
+      placeHolder = placeHolder + array[1][0];
+    }
+
+    return placeHolder;
+  };
+
   return (
     <div className="user-info-container">
       {/* USER IMAGE */}
-      <img className="image-profile" src={picture} alt="user profile" />
+      {picture ? (
+        <img className="image-profile" src={picture} alt="user profile" />
+      ) : (
+        <div className="no-image-profile">
+          {generateProfilePicturePlaceHolder(name)}
+        </div>
+      )}
+
       {/* USER INFO */}
       <div className="user-data">
         <p className="user-data-name">{name}</p>

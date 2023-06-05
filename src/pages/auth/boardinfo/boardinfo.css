@@ -1,0 +1,9 @@
+.boardinfo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  height: 60%;
+  width: 85%;
+  border-radius: 15px;
+}

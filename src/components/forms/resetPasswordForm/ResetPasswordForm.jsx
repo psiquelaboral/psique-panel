@@ -16,6 +16,7 @@ const ResetPasswordForm = () => {
       }}
       onFinish={onFinish}
       autoComplete="off"
+      size="large"
       style={{ width: "100%" }}
     >
       {/* EMAIL */}
@@ -37,7 +38,11 @@ const ResetPasswordForm = () => {
       {/* REMEMBERME AND SUBMIT */}
       <Form.Item>
         <div className="resetpassword-actions-container">
-          <Button type="primary" htmlType="submit">
+          <Button
+            className="resetpassword-buton"
+            type="primary"
+            htmlType="submit"
+          >
             Reiniciar contraseña
           </Button>
         </div>
