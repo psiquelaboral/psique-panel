@@ -3,7 +3,7 @@ import { store } from "@store/store";
 import { cleanUserData } from "@store/slices/user/userSlice";
 
 export const psiqueApi = axios.create({
-  baseURL: process.env.REACT_APP_PSIQUE_API_HOST,
+  baseURL: import.meta.env.VITE_PSIQUE_API_HOST,
 });
 
 psiqueApi.interceptors.response.use(
