@@ -19,9 +19,11 @@ const CustomLayout = ({ children }) => {
     <Layout hasSider className="layout-container">
       {/* SIDE BAR */}
       <Sider
-        style={{ backgroundColor: "#fff" }}
         collapsed={collapsed}
         onCollapse={(value) => setCollapsed(value)}
+        style={{
+          backgroundColor: "#fff",
+        }}
       >
         <div className="logo-container">{collapsed ? "P" : "Psique"}</div>
         <BarMenu />
@@ -39,10 +41,11 @@ const CustomLayout = ({ children }) => {
         {/* BODY */}
         <Content
           style={{
-            margin: "24px 16px",
+            margin: "10px 10px",
             padding: 24,
             minHeight: 280,
             background: colorBgContainer,
+            overflow: "auto",
           }}
         >
           {children}
