@@ -7,5 +7,5 @@ export const getQuizById = (id) => {
       Authorization: "Bearer " + token,
     },
   };
-  return psiqueApi.get(`/quiz/${id}`, config);
+  return psiqueApi.get(`/quiz/employee/${id}`, config);
 };

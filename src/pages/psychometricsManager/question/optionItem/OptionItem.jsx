@@ -20,7 +20,7 @@ const OptionItem = ({ text, selected, loading, onClick }) => {
       <div className="option-item-checked">
         <CheckCircleFilled
           className={selected ? "response-selected" : "checked-icon"}
-          style={{ color: "#30df65" }}
+          style={{ color: "rgb(0 155 47)" }}
         />
       </div>
       <div className="option-text-container">
