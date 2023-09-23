@@ -1,13 +1,12 @@
 import { psiqueApi } from "./config";
 
-export const initializeAnswer = ({
-  employeeId,
-  quizId,
-  name,
-  description,
-  responses = [],
-}) => {
-  let token = localStorage.getItem("accessToken");
+export const initializeAnswer = (
+  { employeeId, quizId, name, description, responses = [] },
+  employeeToken
+) => {
+  let token = employeeToken
+    ? employeeToken
+    : localStorage.getItem("accessToken");
 
   const config = {
     headers: {
@@ -19,8 +18,10 @@ export const initializeAnswer = ({
   return psiqueApi.post(`/answer`, answer, config);
 };
 
-export const finalizeAnswer = (answerId) => {
-  let token = localStorage.getItem("accessToken");
+export const finalizeAnswer = (answerId, employeeToken) => {
+  let token = employeeToken
+    ? employeeToken
+    : localStorage.getItem("accessToken");
 
   const config = {
     headers: {
@@ -33,9 +34,12 @@ export const finalizeAnswer = (answerId) => {
 
 export const registryAnswer = (
   quizId,
-  { questionId, itemId, questionText, answerType, selectedOption = {} }
+  { questionId, itemId, questionText, answerType, selectedOption = {} },
+  employeeToken
 ) => {
-  let token = localStorage.getItem("accessToken");
+  let token = employeeToken
+    ? employeeToken
+    : localStorage.getItem("accessToken");
 
   const config = {
     headers: {
@@ -54,8 +58,10 @@ export const registryAnswer = (
   return psiqueApi.put(`/answer/${quizId}`, response, config);
 };
 
-export const retriveAnswer = (quizId, employeeId) => {
-  let token = localStorage.getItem("accessToken");
+export const retriveAnswer = (quizId, employeeId, employeeToken) => {
+  let token = employeeToken
+    ? employeeToken
+    : localStorage.getItem("accessToken");
   const config = {
     headers: {
       Authorization: "Bearer " + token,
