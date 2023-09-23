@@ -22,8 +22,6 @@ const BarMenu = () => {
       1: () => navigation("/"),
       2: () => navigation("/employe"),
       3: () => navigation("/psychometrics"),
-      4: () =>
-        navigation("/quiz/psychometric/6471ccd2ec42b248081e548b/xxxxxxx"),
     };
 
     router[key]();
@@ -49,11 +47,6 @@ const BarMenu = () => {
           key: "3",
           icon: <AreaChartOutlined />,
           label: "Psicométricos",
-        },
-        {
-          key: "4",
-          icon: <SolutionOutlined />,
-          label: "Iniciar cuestionario",
         },
       ]}
     />

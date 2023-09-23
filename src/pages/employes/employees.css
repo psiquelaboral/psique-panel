@@ -1,0 +1,19 @@
+.employeeName {
+  text-transform: capitalize;
+}
+
+.menu-label_menu-item {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: black;
+  background-color: transparent;
+  font-size: 14px;
+  margin-bottom: 2px;
+  margin-top: 2px;
+  margin-left: 5px;
+}
+
+.label-container_menu-item {
+  display: flex;
+}

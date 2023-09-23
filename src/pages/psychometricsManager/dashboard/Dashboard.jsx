@@ -7,9 +7,9 @@ import { useSelector, useDispatch } from "react-redux";
 
 //components
 import Question from "../question/question/Question";
-import { asyncRegistryAnswer } from "@store/slices/quiz/thunks";
 import { initializeAnswer, finalizeAnswer } from "@apis/psique/answerApi";
 import { getQuizById } from "@apis/psique/quizApi";
+import { asyncRegistryAnswer } from "@store/slices/quiz/thunks";
 import { setCurrentQuiz, setAnswers } from "@store/slices/quiz/quizSlice";
 
 //css
@@ -27,7 +27,7 @@ const Dashboard = () => {
   const quizFromRedux = useSelector((state) => state.quiz.currentQuiz);
   const answersFromRedux = useSelector((state) => state.quiz.answers);
   const [isLoading, setIsLoading] = useState(true);
-  let { quizId, employeeId } = useParams();
+  let { quizId, employeeId, token } = useParams();
   const slider = useRef(null);
 
   const { questions = [] } = quizFromRedux
@@ -38,19 +38,22 @@ const Dashboard = () => {
     if (answersFromRedux === null || quizFromRedux === null) {
       try {
         setIsLoading(true);
-        const quizFromApi = await getQuizById(quizId);
+        const quizFromApi = await getQuizById(quizId, token);
         const quiz = quizFromApi.data;
 
-        const answersFromApi = await initializeAnswer({
-          quizId,
-          employeeId,
-          name: quizFromApi.data.name,
-          description: quizFromApi.data.description,
-        });
+        const answersFromApi = await initializeAnswer(
+          {
+            quizId,
+            employeeId,
+            name: quizFromApi.data.name,
+            description: quizFromApi.data.description,
+          },
+          token
+        );
         const answer = answersFromApi.data;
 
         dispatch(setCurrentQuiz(quiz));
-        dispatch(setAnswers(answer));
+        dispatch(setAnswers(answer, token));
 
         setCurrentQuestion(answer?.responses?.length);
         // if (answer?.responses?.length > 0) {
@@ -73,7 +76,7 @@ const Dashboard = () => {
 
   const finalizeAnswerExecutor = async () => {
     try {
-      const newAnswers = await finalizeAnswer(answersFromRedux.id);
+      const newAnswers = await finalizeAnswer(answersFromRedux.id, token);
       dispatch(setAnswers(newAnswers.data));
     } catch (e) {
       console.log(e);
@@ -99,7 +102,7 @@ const Dashboard = () => {
     setIsLoading(true);
     console.log("options saved", selectedOption);
 
-    dispatch(asyncRegistryAnswer(answersFromRedux.id, selectedOption));
+    dispatch(asyncRegistryAnswer(answersFromRedux.id, selectedOption, token));
 
     setSelectedOption(null);
     slider.current.next();
