@@ -10,42 +10,15 @@ const Question = ({ question, loading, onSelect }) => {
   const [selected, setSelected] = useState();
   const { text, options, id, instructions } = question;
 
-  const switchOptionItem = (type, option) => {
-    const handleOnClick = () => {
-      setSelected(option.id);
-      onSelect({
-        questionId: question.id,
-        itemId: question.itemId,
-        questionText: question.text,
-        answerType: question.answerType,
-        selectedOption: option,
-      });
-    };
-
-    const options = {
-      YES_NO: (
-        <OptionItem
-          loading={loading}
-          key={option.id}
-          id={option.id}
-          text={option.label}
-          selected={selected === option.id}
-          onClick={handleOnClick}
-        />
-      ),
-      LIKERT: (
-        <OptionItem
-          loading={loading}
-          key={option.id}
-          id={option.id}
-          text={option.text}
-          selected={selected === option.id}
-          onClick={handleOnClick}
-        />
-      ),
-    };
-
-    return options[type];
+  const handleOnClick = (option) => {
+    setSelected(option.id);
+    onSelect({
+      questionId: question.id,
+      itemId: question.itemId,
+      questionText: question.text,
+      answerType: question.answerType,
+      selectedOption: option,
+    });
   };
 
   return (
@@ -59,7 +32,16 @@ const Question = ({ question, loading, onSelect }) => {
         <p className="instruction-text"> {instructions}</p>
       </div>
       <div className="on-question-question-options-container">
-        {options.map((option) => switchOptionItem(question.answerType, option))}
+        {options.map((option) => (
+          <OptionItem
+            loading={loading}
+            key={option.id}
+            id={option.id}
+            text={option.label}
+            selected={selected === option.id}
+            onClick={() => handleOnClick(option)}
+          />
+        ))}
       </div>
     </div>
   );

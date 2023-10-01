@@ -54,11 +54,7 @@ const Dashboard = () => {
 
         dispatch(setCurrentQuiz(quiz));
         dispatch(setAnswers(answer, token));
-
         setCurrentQuestion(answer?.responses?.length);
-        // if (answer?.responses?.length > 0) {
-        //   slider.current.goTo(answer.responses.length, false);
-        // }
       } catch (e) {
         console.log(e);
       }
@@ -93,9 +89,28 @@ const Dashboard = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [answersFromRedux]);
 
-  const onSelectedOption = (selectedOption) => {
+  const onSelectedOption = (selectedOptionWrapper) => {
     setIsNextDisabled(false);
-    setSelectedOption(selectedOption);
+
+    const generateTypeOption = (answerType) => {
+      const options = {
+        YES_NO: "booleanOption",
+        LIKERT: "numberOption",
+      };
+      return options[answerType];
+    };
+
+    let optionType = generateTypeOption(selectedOptionWrapper.answerType);
+
+    let finalSelectedOption = {
+      ...selectedOptionWrapper,
+      selectedOption: {
+        ...selectedOptionWrapper.selectedOption,
+        type: optionType,
+      },
+    };
+
+    setSelectedOption(finalSelectedOption);
   };
 
   const nextQuestionHanlder = () => {
@@ -106,11 +121,12 @@ const Dashboard = () => {
 
     setSelectedOption(null);
     slider.current.next();
+    setCurrentQuestion(currentQuestion + 1);
     setIsNextDisabled(true);
     setIsLoading(false);
   };
 
-  const finalizeQuestionHanlder = () => {
+  const finalizeQuestionHandler = () => {
     setIsLoading(true);
     console.log("options saved", selectedOption);
     dispatch(asyncRegistryAnswer(answersFromRedux.id, selectedOption));
@@ -120,10 +136,6 @@ const Dashboard = () => {
     //finalize
     finalizeAnswerExecutor();
     setIsLoading(false);
-  };
-
-  const afterCaroucelChange = (currentSlide) => {
-    setCurrentQuestion(currentSlide);
   };
 
   return (
@@ -159,7 +171,6 @@ const Dashboard = () => {
               {/* QUESTION */}
               <Carousel
                 ref={slider}
-                afterChange={afterCaroucelChange}
                 dots={false}
                 lazyLoad={true}
                 swipe={false}
@@ -189,7 +200,7 @@ const Dashboard = () => {
                       size="large"
                       block={true}
                       loading={isLoading}
-                      onClick={finalizeQuestionHanlder}
+                      onClick={finalizeQuestionHandler}
                     >
                       Terminar formulario
                     </Button>
