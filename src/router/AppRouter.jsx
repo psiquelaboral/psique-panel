@@ -10,6 +10,7 @@ import Employes from "@pages/employes/Employes";
 import AuthPage from "@pages/auth";
 import Psychometrics from "@pages/psychometrics/Psychometrics";
 import Dashboard from "@pages/psychometricsManager/dashboard/Dashboard";
+import Quiz from "@pages/quiz/Quiz";
 
 const AppRouter = () => {
   return (
@@ -39,6 +40,15 @@ const AppRouter = () => {
           element={
             <PrivateRoute>
               <RouteLayout element={Psychometrics} />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          exact
+          path="/quiz"
+          element={
+            <PrivateRoute>
+              <RouteLayout element={Quiz} />
             </PrivateRoute>
           }
         />
