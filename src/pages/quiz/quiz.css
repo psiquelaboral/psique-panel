@@ -1,0 +1,17 @@
+.quiz-container {
+  background-color: transparent;
+  height: 85%;
+}
+
+.step-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100%;
+  text-align: "center";
+  color: "grey";
+  background-color: transparent;
+  border-radius: 5px;
+  border: 1px dashed grey;
+  margin-top: 16px;
+}
