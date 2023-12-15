@@ -1,3 +1,4 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/4a1557d2-591d-4992-9d4d-9c3f3dbd60f2/deploy-status)](https://app.netlify.com/sites/psiquelaboral/deploys)
 # 🔱 Psique Laboral
 
 Psicometrics manager focused on NOM35 on México
